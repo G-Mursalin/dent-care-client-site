@@ -28,7 +28,7 @@ const Info = () => {
     },
   ];
   return (
-    <section className="grid lg:grid-cols-3 md:grid-cols-2 grid-col-1 gap-8 md:px-16 px-5   lg:mt-0 mt-20">
+    <section className="grid lg:grid-cols-3 md:grid-cols-2 grid-col-1 gap-8 md:px-16 px-5 lg:mt-0 mt-20">
       {infoData.map((info, i) => (
         <InfoCard key={i} infoData={info} />
       ))}
