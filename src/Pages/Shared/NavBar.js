@@ -13,17 +13,26 @@ const NavBar = () => {
       </li>
       <li tabIndex="0">
         <NavLink to="/about" className="justify-between">
-          About
+          About Us
         </NavLink>
       </li>
       <li>
         <NavLink to="/appointment">Appointment</NavLink>
       </li>
+      <li>
+        <NavLink to="/reviews">Reviews</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact Us</NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
     </Fragment>
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <nav className="navbar bg-base-100 md:px-16 px-5">
       <div className="navbar-start">
         <div
           onClick={() => setShowNavItems((preState) => !showNavItems)}
@@ -61,7 +70,7 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
-    </div>
+    </nav>
   );
 };
 

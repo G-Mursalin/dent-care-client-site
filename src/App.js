@@ -7,7 +7,9 @@ import NavBar from "./Pages/Shared/NavBar";
 import Home from "./Pages/Home/Home";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import Appointments from "./Pages/Appointments/Appointments";
-
+import Reviews from "./Pages/Reviews/Reviews";
+import Contact from "./Pages/ContactUs/Contact";
+import Login from "./Pages/Login/Login";
 function App() {
   return (
     <Fragment>
@@ -17,6 +19,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/appointment" element={<Appointments />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Fragment>
   );
