@@ -11,7 +11,7 @@ const ServicesBanner = () => {
         <img
           src={treatment}
           alt="treatment"
-          className="lg:max-w-md w-sm rounded-lg shadow-2xl"
+          className="lg:max-w-md w-screen rounded-lg shadow-2xl"
         />
         <div className="lg:ml-14 ml-0">
           <h1 className="text-5xl font-bold">

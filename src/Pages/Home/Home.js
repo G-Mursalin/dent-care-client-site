@@ -7,6 +7,7 @@ import HomeServices from "./HomeServices";
 import ServicesBanner from "./ServicesBanner";
 import HomeAppointment from "./HomeAppointment";
 import Testimonial from "./Testimonial";
+import HomeContactUs from "./HomeContactUs";
 const Home = () => {
   return (
     <Fragment>
@@ -16,6 +17,7 @@ const Home = () => {
       <ServicesBanner />
       <HomeAppointment />
       <Testimonial />
+      <HomeContactUs />
     </Fragment>
   );
 };
