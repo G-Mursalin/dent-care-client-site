@@ -4,9 +4,13 @@ import React from "react";
 import chair from "./../../assets/images/chair.png";
 // Components
 import PrimaryButton from "./../Shared/PrimaryButton";
+import bg from "./../../assets/images/bg.png";
 const Banner = () => {
   return (
-    <section className="hero min-h-screen md:px-16 px-5">
+    <section
+      className="hero min-h-screen md:px-16 px-5"
+      style={{ backgroundImage: `url(${bg})`, backgroundSize: "'cover" }}
+    >
       <div className="flex justify-center items-center flex-col lg:flex-row-reverse">
         <img
           src={chair}
