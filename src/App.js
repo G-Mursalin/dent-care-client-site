@@ -10,6 +10,7 @@ import Appointments from "./Pages/Appointments/Appointments";
 import Reviews from "./Pages/Reviews/Reviews";
 import Contact from "./Pages/ContactUs/Contact";
 import Login from "./Pages/Login/Login";
+
 function App() {
   return (
     <Fragment>

@@ -8,6 +8,7 @@ import ServicesBanner from "./ServicesBanner";
 import HomeAppointment from "./HomeAppointment";
 import Testimonial from "./Testimonial";
 import HomeContactUs from "./HomeContactUs";
+import Footer from "../Shared/Footer";
 const Home = () => {
   return (
     <Fragment>
@@ -18,6 +19,7 @@ const Home = () => {
       <HomeAppointment />
       <Testimonial />
       <HomeContactUs />
+      <Footer />
     </Fragment>
   );
 };

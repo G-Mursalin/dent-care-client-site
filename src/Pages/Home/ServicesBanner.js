@@ -6,14 +6,14 @@ import treatment from "./../../assets/images/treatment.png";
 import PrimaryButton from "../Shared/PrimaryButton";
 const ServicesBanner = () => {
   return (
-    <div className="hero min-h-screen md:px-16 px-5 mt-20">
-      <div className="hero-content flex-col lg:flex-row">
+    <section className="hero min-h-screen md:px-16 px-5 mt-20">
+      <div className="flex justify-center items-center flex-col lg:flex-row">
         <img
           src={treatment}
           alt="treatment"
-          className="lg:max-w-md w-screen rounded-lg shadow-2xl"
+          className="md:max-w-md w-sm rounded-lg shadow-2xl"
         />
-        <div className="lg:ml-14 ml-0">
+        <div className="lg:ml-14 ml-0 mt-8">
           <h1 className="text-5xl font-bold">
             Exceptional Dental Care, on Your Terms
           </h1>
@@ -28,7 +28,7 @@ const ServicesBanner = () => {
           <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

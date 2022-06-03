@@ -16,7 +16,7 @@ const HomeAppointment = () => {
       <div className="flex-1 mt-[-100px]">
         <img src={doctor} alt="doctor" />
       </div>
-      <div className="flex-1 space-y-4 md:px-16 px-5 mt-4 py-4">
+      <div className="flex-1 space-y-4 md:px-16 px-5 mt-4 py-8">
         <h3 className="font-bold text-secondary">Appointment</h3>
         <h1 className="text-3xl text-white font-bold">
           Make an appointment Today
