@@ -3,6 +3,8 @@ import React from "react";
 // Images
 import doctor from "./../../assets/images/doctor-small.png";
 import appointment from "./../../assets/images/appointment.png";
+// Components
+import PrimaryButton from "../Shared/PrimaryButton";
 const HomeAppointment = () => {
   return (
     <section
@@ -27,9 +29,7 @@ const HomeAppointment = () => {
           look like readable English. Many desktop publishing packages and web
           page
         </p>
-        <button className="btn btn-primary uppercase font-bold text-white bg-gradient-to-r from-secondary to-primary">
-          Get Started
-        </button>
+        <PrimaryButton>Get Started</PrimaryButton>
       </div>
     </section>
   );

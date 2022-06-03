@@ -2,6 +2,8 @@
 import React from "react";
 // Images
 import treatment from "./../../assets/images/treatment.png";
+// Components
+import PrimaryButton from "../Shared/PrimaryButton";
 const ServicesBanner = () => {
   return (
     <div className="hero min-h-screen md:px-16 px-5 mt-20">
@@ -23,9 +25,7 @@ const ServicesBanner = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <button className="btn btn-primary uppercase font-bold text-white bg-gradient-to-r from-secondary to-primary">
-            Get Started
-          </button>
+          <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
     </div>
