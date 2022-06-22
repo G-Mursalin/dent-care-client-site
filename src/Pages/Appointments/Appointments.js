@@ -1,7 +1,14 @@
-import React from "react";
+// React
+import React, { Fragment } from "react";
+// Components
+import AppointmentBanner from "./AppointmentBanner";
 
 const Appointments = () => {
-  return <div>Appointments</div>;
+  return (
+    <Fragment>
+      <AppointmentBanner />
+    </Fragment>
+  );
 };
 
 export default Appointments;
