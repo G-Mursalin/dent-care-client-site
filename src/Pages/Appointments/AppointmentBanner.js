@@ -6,18 +6,16 @@ import chair from "./../../assets/images/chair.png";
 // Day Picker
 import "react-day-picker/dist/style.css";
 import { DayPicker } from "react-day-picker";
-import { format } from "date-fns";
 
-const AppointmentBanner = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const AppointmentBanner = ({ onSelectedDate, onSetSelectedDate }) => {
   return (
-    <section className="min-h-screen flex justify-center items-center md:px-16 px-5">
+    <section className="min-h-screen flex justify-center items-center md:px-16 px-5 lg:mb-0 mb-24">
       <div className="flex justify-evenly items-center flex-col-reverse lg:flex-row w-full">
-        <div>
+        <div className="mt-5">
           <DayPicker
             mode="single"
-            selected={selectedDate}
-            onSelect={setSelectedDate}
+            selected={onSelectedDate}
+            onSelect={onSetSelectedDate}
           />
         </div>
         <img
