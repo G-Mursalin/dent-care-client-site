@@ -1,5 +1,5 @@
 // React
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Day Picker
 import { format } from "date-fns";
 const BookingModal = ({ treatment, date, setTreatment }) => {
@@ -9,7 +9,6 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
   const handleBooking = (e) => {
     e.preventDefault();
     const date = e.target.date.value;
-
     if (!/\d/.test(date)) {
       setIsDateSelected(false);
       return;
@@ -34,13 +33,11 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               type="text"
               name="date"
               disabled
-              value={
-                date ? format(date, "PP") : "Please select a date from calender"
-              }
+              value={date ? format(date, "PP") : "No date selected"}
               className="input input-bordered border-secondary w-full"
             />
             {!isDateSelected ? (
-              <p className="text-red-600">
+              <p className="text-red-600 text-sm ml-3 -mt-3">
                 *Please select a date from calender
               </p>
             ) : (
