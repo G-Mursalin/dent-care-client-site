@@ -5,6 +5,7 @@ import { format } from "date-fns";
 // Components
 import Service from "./Service";
 import BookingModal from "./BookingModal";
+
 const AvailableAppointment = ({ onSelectedDate }) => {
   const [services, setServices] = useState([]);
   const [treatment, setTreatment] = useState(null);
