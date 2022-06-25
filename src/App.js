@@ -10,7 +10,7 @@ import Appointments from "./Pages/Appointments/Appointments";
 import Reviews from "./Pages/Reviews/Reviews";
 import Contact from "./Pages/ContactUs/Contact";
 import Login from "./Pages/Login/Login";
-
+import SignUp from "./Pages/Login/SignUp";
 function App() {
   return (
     <Fragment>
@@ -23,6 +23,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Fragment>
   );

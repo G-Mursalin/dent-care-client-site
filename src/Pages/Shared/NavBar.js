@@ -2,9 +2,13 @@
 import React, { Fragment, useState } from "react";
 // React Router
 import { NavLink } from "react-router-dom";
-
+// React Firebase Hook
+import { signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 const NavBar = () => {
   const [showNavItems, setShowNavItems] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
   // NavBar Items
   const menuItems = (
     <Fragment>
@@ -26,7 +30,13 @@ const NavBar = () => {
         <NavLink to="/contact">Contact Us</NavLink>
       </li>
       <li>
-        <NavLink to="/login">Login</NavLink>
+        {user ? (
+          <button class="btn btn-outline" onClick={() => signOut(auth)}>
+            Sign Out
+          </button>
+        ) : (
+          <NavLink to="/login">Login</NavLink>
+        )}
       </li>
     </Fragment>
   );
