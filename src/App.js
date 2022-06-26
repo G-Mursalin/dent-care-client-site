@@ -11,6 +11,7 @@ import Reviews from "./Pages/Reviews/Reviews";
 import Contact from "./Pages/ContactUs/Contact";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/Login/SignUp";
+import RequireAuth from "./Pages/Login/RequireAuth";
 function App() {
   return (
     <Fragment>
@@ -19,7 +20,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/appointment" element={<Appointments />} />
+        <Route
+          path="/appointment"
+          element={
+            <RequireAuth>
+              <Appointments />
+            </RequireAuth>
+          }
+        />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
