@@ -2,6 +2,9 @@
 import React, { Fragment } from "react";
 // React Router
 import { Routes, Route } from "react-router-dom";
+// React Toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Components
 import NavBar from "./Pages/Shared/NavBar";
 import Home from "./Pages/Home/Home";
@@ -33,6 +36,17 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Fragment>
   );
 }

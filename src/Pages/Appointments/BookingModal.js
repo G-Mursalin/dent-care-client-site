@@ -2,18 +2,54 @@
 import React, { useState } from "react";
 // Day Picker
 import { format } from "date-fns";
-const BookingModal = ({ treatment, date, setTreatment }) => {
-  const { name, slots } = treatment;
-  const [isDateSelected, setIsDateSelected] = useState(true);
+// React Toastify
+import { toast } from "react-toastify";
+// React Hook
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
+const BookingModal = ({ treatment, date, setTreatment }) => {
+  const { _id, name, slots } = treatment;
+  const [isDateSelected, setIsDateSelected] = useState(true);
+  const [user] = useAuthState(auth);
   const handleBooking = (e) => {
     e.preventDefault();
     const date = e.target.date.value;
+    const slot = e.target.slot.value;
     if (!/\d/.test(date)) {
       setIsDateSelected(false);
       return;
     }
-    setTreatment(null);
+
+    const booking = {
+      treatmentId: _id,
+      treatmentName: name,
+      date: date,
+      slot,
+      patientName: user?.displayName,
+      patientEmail: user?.email,
+      phone: e.target.phone.value,
+    };
+    //  Send data to backend
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success(`Appointment is set, ${date} at ${slot}`);
+        } else {
+          toast.warn(
+            `You already have an appointment set on, ${data.booking?.date} at ${data.booking?.slot}`
+          );
+        }
+        // Closed the model
+        setTreatment(null);
+      });
   };
   return (
     <div>
@@ -58,13 +94,17 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               required
               name="name"
               placeholder="Your Name"
+              value={user?.displayName || ""}
+              disabled
               className="input input-bordered border-secondary w-full"
             />
             <input
-              type="text"
+              type="email"
               required
               name="email"
               placeholder="Email Address"
+              value={user?.email || ""}
+              disabled
               className="input input-bordered border-secondary w-full"
             />
             <input

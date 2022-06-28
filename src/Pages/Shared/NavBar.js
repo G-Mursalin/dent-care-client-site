@@ -31,7 +31,7 @@ const NavBar = () => {
       </li>
       <li>
         {user ? (
-          <button class="btn btn-outline" onClick={() => signOut(auth)}>
+          <button className="btn btn-outline" onClick={() => signOut(auth)}>
             Sign Out
           </button>
         ) : (
