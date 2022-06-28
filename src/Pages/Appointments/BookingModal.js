@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
-const BookingModal = ({ treatment, date, setTreatment }) => {
+const BookingModal = ({ treatment, date, setTreatment, onRefetch }) => {
   const { _id, name, slots } = treatment;
   const [isDateSelected, setIsDateSelected] = useState(true);
   const [user] = useAuthState(auth);
@@ -48,6 +48,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
           );
         }
         // Closed the model
+        onRefetch();
         setTreatment(null);
       });
   };

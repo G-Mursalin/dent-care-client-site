@@ -2,18 +2,34 @@
 import React, { useState, useEffect } from "react";
 // Day Picker
 import { format } from "date-fns";
+// React Query
+import { useQuery } from "react-query";
 // Components
 import Service from "./Service";
 import BookingModal from "./BookingModal";
+import Loading from "../Shared/Loading";
 
 const AvailableAppointment = ({ onSelectedDate }) => {
-  const [services, setServices] = useState([]);
+  // const [services, setServices] = useState([]);
   const [treatment, setTreatment] = useState(null);
-  useEffect(() => {
-    fetch("http://localhost:5000/services")
-      .then((res) => res.json())
-      .then((data) => setServices(data));
-  }, []);
+  let formattedDate = "";
+  if (onSelectedDate) {
+    formattedDate = format(onSelectedDate, "PP");
+  }
+  const {
+    data: services,
+    isLoading,
+    refetch,
+  } = useQuery(["availableSlots", formattedDate], () =>
+    fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
+      res.json()
+    )
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <section className="md:px-16 px-5 mb-32">
       <h3 className="font-bold  text-secondary text-center lg:mb-24 mb-14">
@@ -38,6 +54,7 @@ const AvailableAppointment = ({ onSelectedDate }) => {
           setTreatment={setTreatment}
           treatment={treatment}
           date={onSelectedDate}
+          onRefetch={refetch}
         />
       )}
     </section>
