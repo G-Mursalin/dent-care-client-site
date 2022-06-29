@@ -29,6 +29,12 @@ const NavBar = () => {
       <li>
         <NavLink to="/contact">Contact Us</NavLink>
       </li>
+
+      {user && (
+        <li>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </li>
+      )}
       <li>
         {user ? (
           <button className="btn btn-outline" onClick={() => signOut(auth)}>
