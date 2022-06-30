@@ -10,7 +10,7 @@ import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 // Components
 import Loading from "../Shared/Loading";
-
+import useToken from "../../hooks/useToken";
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, epUser, epLoading, epError] =
@@ -27,6 +27,7 @@ const Login = () => {
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
+  const [token] = useToken(gUser || epUser);
   if (gError || epError) {
     showSignInError = (
       <p className="text-red-500 mb-2 text-sm">
@@ -37,7 +38,7 @@ const Login = () => {
   if (gLoading || epLoading) {
     return <Loading />;
   }
-  if (gUser || epUser) {
+  if (token) {
     navigate(from, { replace: true });
   }
 
