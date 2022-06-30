@@ -13,6 +13,7 @@ import {
 } from "react-firebase-hooks/auth";
 // Components
 import Loading from "../Shared/Loading";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, ePUser, ePLoading, ePError] =
@@ -24,6 +25,7 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [token] = useToken(ePUser || gUser);
   let showSignInError = "";
   const navigate = useNavigate();
   if (ePError || gError || error) {
@@ -36,9 +38,9 @@ const SignUp = () => {
   if (ePLoading || gLoading || updating) {
     return <Loading />;
   }
-  if (ePUser || gUser) {
-    console.log(ePUser || gUser);
+  if (token) {
   }
+
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
