@@ -2,20 +2,23 @@
 import React from "react";
 // React Query
 import { useQuery } from "react-query";
+// React Firebase Hook
+import { signOut } from "firebase/auth";
 // React Router
 import { useNavigate } from "react-router-dom";
 // React Firebase Hook
-import { useAuthState } from "react-firebase-hooks/auth";
-import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
 // Components
 import Loading from "../Shared/Loading";
-const MyAppointments = () => {
-  const [user] = useAuthState(auth);
+import AllUsersRow from "./AllUsersRow";
+const AllUsers = () => {
   const navigate = useNavigate();
-
-  const { data: appointments, isLoading } = useQuery("userAppointments", () =>
-    fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("allUsers", () =>
+    fetch("http://localhost:5000/users", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -34,30 +37,27 @@ const MyAppointments = () => {
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <div>
-      <h2 className="my-3">My Total Appointments: {appointments.length}</h2>
+      <h2 className="my-3">Total User: {users.length}</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Treatment</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            {appointments.map((a, i) => (
-              <tr key={i}>
-                <th>{i + 1}</th>
-                <td>{a.patientName}</td>
-                <td>{a.date}</td>
-                <td>{a.slot}</td>
-                <td>{a.treatmentName}</td>
-              </tr>
+            {users.map((user, idx) => (
+              <AllUsersRow
+                key={user._id}
+                user={user}
+                index={idx}
+                refetch={refetch}
+              />
             ))}
           </tbody>
         </table>
@@ -66,4 +66,4 @@ const MyAppointments = () => {
   );
 };
 
-export default MyAppointments;
+export default AllUsers;
