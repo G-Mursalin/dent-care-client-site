@@ -84,7 +84,7 @@ const AddADoctor = () => {
   };
   return (
     <div>
-      <h2 className="my-3">Add a doctor</h2>
+      <h2 className="my-3 text-2xl">Add a doctor</h2>
       <div className="container px-5 mx-auto">
         <form onSubmit={handleAddProduct} className="mx-auto">
           <div className="flex flex-wrap -m-2">

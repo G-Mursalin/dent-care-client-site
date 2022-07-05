@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 // React Query
 import { useQuery } from "react-query";
 // React Firebase Hook
@@ -10,15 +10,17 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 // Components
 import Loading from "../Shared/Loading";
-import AllUsersRow from "./AllUsersRow";
-const AllUsers = () => {
+import ManageDoctorsRow from "./ManageDoctorsRow";
+import DeleteDoctorModal from "./DeleteDoctorModal";
+const ManageDoctors = () => {
   const navigate = useNavigate();
+  const [doctorInfo, setDoctorInfo] = useState(null);
   const {
-    data: users,
+    data: doctors,
     isLoading,
     refetch,
-  } = useQuery("allUsers", () =>
-    fetch("http://localhost:5000/users", {
+  } = useQuery("allDoctors", () =>
+    fetch("http://localhost:5000/doctor", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -38,32 +40,41 @@ const AllUsers = () => {
     return <Loading />;
   }
   return (
-    <div>
-      <h2 className="my-3 text-2xl">Total User: {users.length}</h2>
+    <section>
+      <h2 className="my-2 text-2xl">Total Listed Doctor: {doctors.length}</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
             <tr>
               <th></th>
+              <th>Avatar</th>
+              <th>Name</th>
               <th>Email</th>
-              <th>Role</th>
-              <th></th>
+              <th>Specialty</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user, idx) => (
-              <AllUsersRow
-                key={user._id}
-                user={user}
-                index={idx}
-                refetch={refetch}
-              />
+            {doctors.map((doctor, i) => (
+              <ManageDoctorsRow
+                key={doctor._id}
+                doctor={doctor}
+                index={i}
+                setDoctorInfo={setDoctorInfo}
+              ></ManageDoctorsRow>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
+      {doctorInfo && (
+        <DeleteDoctorModal
+          doctorInfo={doctorInfo}
+          setDoctorInfo={setDoctorInfo}
+          refetch={refetch}
+        />
+      )}
+    </section>
   );
 };
 
-export default AllUsers;
+export default ManageDoctors;

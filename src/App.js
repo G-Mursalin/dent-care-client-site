@@ -22,6 +22,7 @@ import MyHistory from "./Pages/Dashboard/MyHistory";
 import AllUsers from "./Pages/Dashboard/AllUsers";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
 import AddADoctor from "./Pages/Dashboard/AddADoctor";
+import ManageDoctors from "./Pages/Dashboard/ManageDoctors";
 function App() {
   return (
     <Fragment>
@@ -65,6 +66,14 @@ function App() {
               </RequireAdmin>
             }
           />
+          <Route
+            path="manageDoctors"
+            element={
+              <RequireAdmin>
+                <ManageDoctors />
+              </RequireAdmin>
+            }
+          />
         </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
@@ -73,7 +82,7 @@ function App() {
       </Routes>
       <ToastContainer
         position="bottom-right"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
