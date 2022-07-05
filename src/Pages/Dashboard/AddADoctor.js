@@ -74,6 +74,8 @@ const AddADoctor = () => {
             console.log(data);
             if (data.success) {
               toast.success("Doctor Added Successfully");
+            } else {
+              toast.error("Failed to add the doctor");
             }
           });
       });
