@@ -3,13 +3,14 @@ import React from "react";
 // React Query
 import { useQuery } from "react-query";
 // React Router
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 // React Firebase Hook
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
 // Components
 import Loading from "../Shared/Loading";
+
 const MyAppointments = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const MyAppointments = () => {
               <th>Date</th>
               <th>Time</th>
               <th>Treatment</th>
+              <th>Payment</th>
             </tr>
           </thead>
           <tbody>
@@ -59,6 +61,16 @@ const MyAppointments = () => {
                 <td>{a.date}</td>
                 <td>{a.slot}</td>
                 <td>{a.treatmentName}</td>
+                <td>
+                  {a.price && !a.paid && (
+                    <Link to={`/dashboard/payment/${a._id}`}>
+                      <button className="btn btn-xs btn-success">pay</button>
+                    </Link>
+                  )}
+                  {a.price && a.paid && (
+                    <span className="text-success">paid</span>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

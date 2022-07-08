@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const BookingModal = ({ treatment, date, setTreatment, onRefetch }) => {
-  const { _id, name, slots } = treatment;
+  const { _id, name, slots, price } = treatment;
   const [isDateSelected, setIsDateSelected] = useState(true);
   const [user] = useAuthState(auth);
   const handleBooking = (e) => {
@@ -26,6 +26,7 @@ const BookingModal = ({ treatment, date, setTreatment, onRefetch }) => {
       treatmentName: name,
       date: date,
       slot,
+      price,
       patientName: user?.displayName,
       patientEmail: user?.email,
       phone: e.target.phone.value,

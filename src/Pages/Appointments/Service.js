@@ -3,7 +3,7 @@ import React from "react";
 // Components
 
 const Service = ({ service, onSetTreatment }) => {
-  const { name, slots } = service;
+  const { name, slots, price } = service;
 
   return (
     <div className="card shadow-xl">
@@ -16,6 +16,7 @@ const Service = ({ service, onSetTreatment }) => {
             <span className="text-red-600">No slots available</span>
           )}
         </p>
+        <p>Price: ${price}</p>
         <p>
           {slots.length} {slots.length > 1 ? "spaces" : "space"} available
         </p>
