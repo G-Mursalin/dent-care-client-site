@@ -51,6 +51,7 @@ const MyAppointments = () => {
               <th>Time</th>
               <th>Treatment</th>
               <th>Payment</th>
+              <th>Transaction ID</th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +70,12 @@ const MyAppointments = () => {
                   )}
                   {a.price && a.paid && (
                     <span className="text-success">paid</span>
+                  )}
+                </td>
+                <td>
+                  {a.price && !a.paid && <span>Not Paid Yet</span>}
+                  {a.price && a.paid && (
+                    <span className="text-success">{a.transactionId}</span>
                   )}
                 </td>
               </tr>

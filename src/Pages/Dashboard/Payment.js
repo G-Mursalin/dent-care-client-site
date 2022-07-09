@@ -8,11 +8,19 @@ import { useQuery } from "react-query";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
+// Stripe
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 // Components
 import Loading from "../Shared/Loading";
+import CheckoutForm from "./CheckoutForm";
+
+const stripePromise = loadStripe(
+  "pk_test_51L0ewEEKrvYKu07JVvEGZ9pVEVbsMczCJsd26URh6eFX7kvX1lTd23ou1x027Ny8qwIuKgc0ZAQgsmzHmz1oL5Vr00tLYw5o11"
+);
+
 const Payment = () => {
   const { id } = useParams();
-  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const { data: booking, isLoading } = useQuery(["userPayBooking", id], () =>
     fetch(`http://localhost:5000/booking/${id}`, {
@@ -47,10 +55,18 @@ const Payment = () => {
             </h2>
             <p className="text-lg">
               Your appointment:&nbsp;
-              <span className="text-red-500">{booking.date}</span>&nbsp;at&nbsp;
-              <span className="text-red-500">{booking.slot}</span>
+              <span className="text-red-500 font-bold">{booking.date}</span>
+              &nbsp;at&nbsp;
+              <span className="text-red-500 font-bold">{booking.slot}</span>
             </p>
             <p className="text-lg">Please Pay:&nbsp;${booking.price}</p>
+          </div>
+        </div>
+        <div className="card text-primary-content shadow-lg">
+          <div className="card-body">
+            <Elements stripe={stripePromise}>
+              <CheckoutForm appointment={booking} />
+            </Elements>
           </div>
         </div>
       </div>
