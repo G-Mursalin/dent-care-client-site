@@ -11,7 +11,7 @@ import auth from "../../firebase.init";
 const DeleteDoctorModal = ({ doctorInfo, setDoctorInfo, refetch }) => {
   const navigate = useNavigate();
   const handleDoctorDelete = () => {
-    fetch(`http://localhost:5000/doctor/${doctorInfo.email}`, {
+    fetch(`https://dent-care.herokuapp.com/doctor/${doctorInfo.email}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",

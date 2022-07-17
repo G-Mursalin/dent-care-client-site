@@ -5,7 +5,6 @@ import { useParams, useNavigate } from "react-router-dom";
 // React Query
 import { useQuery } from "react-query";
 // React Firebase Hook
-import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
 // Stripe
@@ -23,7 +22,7 @@ const Payment = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: booking, isLoading } = useQuery(["userPayBooking", id], () =>
-    fetch(`http://localhost:5000/booking/${id}`, {
+    fetch(`https://dent-care.herokuapp.com/booking/${id}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -60,6 +59,10 @@ const Payment = () => {
               <span className="text-red-500 font-bold">{booking.slot}</span>
             </p>
             <p className="text-lg">Please Pay:&nbsp;${booking.price}</p>
+            <p className="text-lg">Card Number:&nbsp;4242 4242 4242 4242</p>
+            <p className="text-lg">MM/YY:&nbsp;Any Future Month and Year</p>
+            <p className="text-lg">CVC:&nbsp;Any 3 Digits</p>
+            <p className="text-lg">ZIP:&nbsp;Any 5 Digits</p>
           </div>
         </div>
         <div className="card text-primary-content shadow-lg">

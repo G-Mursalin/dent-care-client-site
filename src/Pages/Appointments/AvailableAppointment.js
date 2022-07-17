@@ -21,9 +21,9 @@ const AvailableAppointment = ({ onSelectedDate }) => {
     isLoading,
     refetch,
   } = useQuery(["availableSlots", formattedDate], () =>
-    fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://dent-care.herokuapp.com/available?date=${formattedDate}`
+    ).then((res) => res.json())
   );
 
   if (isLoading) {

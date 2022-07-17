@@ -18,7 +18,7 @@ const AllUsers = () => {
     isLoading,
     refetch,
   } = useQuery("allUsers", () =>
-    fetch("http://localhost:5000/users", {
+    fetch("https://dent-care.herokuapp.com/users", {
       method: "GET",
       headers: {
         "Content-type": "application/json",

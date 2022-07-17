@@ -6,14 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase.init";
 // Stripe
-import {
-  CardElement,
-  Elements,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-// Components
-import Loading from "../Shared/Loading";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
 const CheckoutForm = ({ appointment }) => {
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
@@ -26,7 +20,7 @@ const CheckoutForm = ({ appointment }) => {
   const { _id, price, patientName, patientEmail } = appointment;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://dent-care.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -94,7 +88,7 @@ const CheckoutForm = ({ appointment }) => {
         appointment: _id,
       };
       setProcessing(true);
-      fetch(`http://localhost:5000/booking/${_id}`, {
+      fetch(`https://dent-care.herokuapp.com/booking/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",

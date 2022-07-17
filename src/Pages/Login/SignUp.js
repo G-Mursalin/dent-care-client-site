@@ -25,7 +25,9 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const [token] = useToken(ePUser || gUser);
+
   let showSignInError = "";
   const navigate = useNavigate();
   if (ePError || gError || error) {

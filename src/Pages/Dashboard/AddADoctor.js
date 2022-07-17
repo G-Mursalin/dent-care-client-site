@@ -15,7 +15,7 @@ const AddADoctor = () => {
   const [file, setFile] = useState();
   const navigate = useNavigate();
   const { data: specialty, isLoading } = useQuery("specialty", () =>
-    fetch("http://localhost:5000/services", {
+    fetch("https://dent-care.herokuapp.com/services", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -54,7 +54,7 @@ const AddADoctor = () => {
         }
 
         // Send to data base
-        fetch("http://localhost:5000/doctor", {
+        fetch("https://dent-care.herokuapp.com/doctor", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

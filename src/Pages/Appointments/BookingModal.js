@@ -32,7 +32,7 @@ const BookingModal = ({ treatment, date, setTreatment, onRefetch }) => {
       phone: e.target.phone.value,
     };
     //  Send data to backend
-    fetch("http://localhost:5000/booking", {
+    fetch("https://dent-care.herokuapp.com/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

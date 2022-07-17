@@ -16,7 +16,7 @@ const MyAppointments = () => {
   const navigate = useNavigate();
 
   const { data: appointments, isLoading } = useQuery("userAppointments", () =>
-    fetch(`http://localhost:5000/booking?email=${user?.email}`, {
+    fetch(`https://dent-care.herokuapp.com/booking?email=${user?.email}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",

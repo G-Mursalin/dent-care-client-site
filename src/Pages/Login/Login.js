@@ -50,7 +50,9 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">
+                  Email(Admin Email: admin@gmail.com)
+                </span>
               </label>
               <input
                 type="email"
@@ -82,7 +84,9 @@ const Login = () => {
             </div>
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text">
+                  Password(Admin Password:123456)
+                </span>
               </label>
               <input
                 type="password"

@@ -20,7 +20,7 @@ const ManageDoctors = () => {
     isLoading,
     refetch,
   } = useQuery("allDoctors", () =>
-    fetch("http://localhost:5000/doctor", {
+    fetch("https://dent-care.herokuapp.com/doctor", {
       method: "GET",
       headers: {
         "Content-type": "application/json",

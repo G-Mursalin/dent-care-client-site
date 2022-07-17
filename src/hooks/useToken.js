@@ -6,9 +6,11 @@ const useToken = (user) => {
 
   useEffect(() => {
     const email = user?.user?.email;
-    const currentUser = { email: email };
+    const userName = user?.user?.displayName;
+    const currentUser = { email: email, userName: userName };
+    console.log(user);
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
+      fetch(`https://dent-care.herokuapp.com/user/${email}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

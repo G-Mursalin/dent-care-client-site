@@ -6,9 +6,17 @@ import { NavLink } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+// Components
+import Loading from "./Loading";
 const NavBar = () => {
   const [showNavItems, setShowNavItems] = useState(false);
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (user) {
+  }
   // NavBar Items
   const menuItems = (
     <Fragment>
