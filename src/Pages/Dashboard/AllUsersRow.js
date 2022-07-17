@@ -7,12 +7,21 @@ import { useQuery } from "react-query";
 // React Router
 import { useNavigate } from "react-router-dom";
 // React Firebase Hook
+import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+// React Toastify
 import { toast } from "react-toastify";
+// Components
+import Loading from "./../Shared/Loading";
 
 const AllUsersRow = ({ user, index, refetch }) => {
   const { email, role } = user;
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+
+  if (loading) {
+    <Loading />;
+  }
   const makeAdmin = () => {
     fetch(`https://dent-care.herokuapp.com/user/admin/${email}`, {
       method: "PUT",
@@ -74,9 +83,13 @@ const AllUsersRow = ({ user, index, refetch }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-xs" onClick={deleteUser}>
-          Remove User
-        </button>
+        {email === user.email ? (
+          ""
+        ) : (
+          <button className="btn btn-xs" onClick={deleteUser}>
+            Remove User
+          </button>
+        )}
       </td>
     </tr>
   );
