@@ -16,7 +16,7 @@ import Loading from "./../Shared/Loading";
 
 const AllUsersRow = ({ user, index, refetch }) => {
   const { email, role } = user;
-  const [user, loading] = useAuthState(auth);
+  const [loginUser, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
   if (loading) {
@@ -83,7 +83,7 @@ const AllUsersRow = ({ user, index, refetch }) => {
         )}
       </td>
       <td>
-        {email === user.email ? (
+        {email === loginUser?.email ? (
           ""
         ) : (
           <button className="btn btn-xs" onClick={deleteUser}>
